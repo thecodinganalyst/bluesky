@@ -16,6 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { TreeComponent } from './tree/tree.component';
 import { MatTreeModule } from '@angular/material/tree';
+import { AppRoutingModule } from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatTreeModule } from '@angular/material/tree';
     TreeComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     LayoutModule,
