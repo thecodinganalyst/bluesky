@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { TableDataSource, TableItem } from './table-datasource';
 import {SelectionModel} from "@angular/cdk/collections";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-table',
@@ -14,15 +15,21 @@ export class TableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<TableItem>;
+  checkboxColumn = "select"
   dataSource: TableDataSource;
-  showCheckbox: boolean = true;
-  allowMultipleSelection: boolean = true;
+  showCheckbox: boolean = false;
+  allowMultipleSelection: boolean = false;
   selection = new SelectionModel<TableItem>(this.allowMultipleSelection, [])
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
 
-  constructor() {
+  activatedRouteData = this.activatedRoute.data.subscribe(data => {
+    this.showCheckbox = data["showCheckbox"] === null ? false : data["showCheckbox"]
+    this.allowMultipleSelection = data["allowMultipleSelection"] === null ? false : data["allowMultipleSelection"]
+  })
+
+  constructor(private activatedRoute: ActivatedRoute) {
     this.dataSource = new TableDataSource();
   }
 
@@ -30,7 +37,9 @@ export class TableComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
-    this.showCheckbox ? this.displayedColumns.unshift('select') : null
+
+    this.showCheckbox ? this.displayedColumns.unshift(this.checkboxColumn) : null
+    this.allowMultipleSelection ? this.selection = new SelectionModel<TableItem>(this.allowMultipleSelection, []) : null
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -42,6 +51,7 @@ export class TableComponent implements AfterViewInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
+    if(!this.allowMultipleSelection) return;
     if (this.isAllSelected()) {
       this.selection.clear();
       return;

@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavigationComponent } from './navigation.component';
+import {AppRoutingModule} from "../app-routing.module";
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -17,6 +18,7 @@ describe('NavigationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [NavigationComponent],
       imports: [
+        AppRoutingModule,
         NoopAnimationsModule,
         LayoutModule,
         MatButtonModule,
