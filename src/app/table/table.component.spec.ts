@@ -8,11 +8,9 @@ import { TableComponent } from './table.component';
 import {AppRoutingModule} from "../app-routing.module";
 import {TestbedHarnessEnvironment} from "@angular/cdk/testing/testbed";
 import {HarnessLoader} from "@angular/cdk/testing";
-import {MatRowHarness, MatTableHarness} from "@angular/material/table/testing";
 import {MatCheckboxHarness} from "@angular/material/checkbox/testing";
-import {of} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -25,6 +23,7 @@ describe('TableComponent', () => {
       imports: [
         FormsModule,
         NoopAnimationsModule,
+        MatCheckboxModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
@@ -43,5 +42,40 @@ describe('TableComponent', () => {
   it('should compile', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should show checkbox when showCheckbox is enabled', async () => {
+    component.showCheckbox = true;
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    let checkBoxes = await loader.getAllHarnesses(MatCheckboxHarness);
+    expect(checkBoxes.length).toBeGreaterThan(0);
+  })
+
+  it('should allow multiple selection when allowMultipleSelection is enabled', async () => {
+    component.showCheckbox = true;
+    component.allowMultipleSelection = true;
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    component.toggleAllRows();
+    let checkBoxes = await loader.getAllHarnesses(MatCheckboxHarness);
+    for (const checkBox of checkBoxes) {
+      expect(await checkBox.isChecked()).toBeTrue();
+    }
+    expect(component.isAllSelected()).toBeTrue();
+  })
+
+  it('should not allow multiple selection when allowMultipleSelection is disabled', async () => {
+    component.showCheckbox = true;
+    component.allowMultipleSelection = false;
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    component.toggleAllRows();
+    let checkBoxes = await loader.getAllHarnesses(MatCheckboxHarness);
+    for (const checkBox of checkBoxes) {
+      expect(await checkBox.isChecked()).toBeFalse();
+    }
+    expect(component.isAllSelected()).toBeFalse();
+  })
+
 
 });
