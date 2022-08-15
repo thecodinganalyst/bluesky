@@ -2,7 +2,7 @@
   <table mat-table class="full-width-table" matSort aria-label="Elements">
 
     <!-- Checkbox Column -->
-    <ng-container matColumnDef="select">
+    <ng-container matColumnDef="{{checkboxColumn}}">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox (change)="$event ? toggleAllRows() : null"
                       [checked]="selection.hasValue() && isAllSelected()"
@@ -36,7 +36,7 @@
   </table>
 
   <mat-paginator #paginator
-      [length]="dataSource?.data?.length"
+      [length]="dataSource.data.length"
       [pageIndex]="0"
       [pageSize]="10"
       [pageSizeOptions]="[5, 10, 20]"
