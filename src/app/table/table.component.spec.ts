@@ -11,6 +11,8 @@ import {HarnessLoader} from "@angular/cdk/testing";
 import {MatCheckboxHarness} from "@angular/material/checkbox/testing";
 import {FormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTableHarness} from "@angular/material/table/testing";
+import {MatSortHeaderHarness} from "@angular/material/sort/testing";
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -75,6 +77,31 @@ describe('TableComponent', () => {
       expect(await checkBox.isChecked()).toBeFalse();
     }
     expect(component.isAllSelected()).toBeFalse();
+  })
+
+  it('should be able to sort ascendingly and descendingly', async () => {
+    const col = 1;
+    let headerCells = await loader.getAllHarnesses(MatSortHeaderHarness);
+    await headerCells[col].click();
+    fixture.detectChanges();
+    let direction = await headerCells[1].getSortDirection();
+    let table = await loader.getHarness(MatTableHarness);
+    let data = await table.getCellTextByIndex();
+    let colData = data.map(row => row[col]);
+    expect(direction).toEqual("asc");
+    for(let i = 1; i < colData.length; i ++){
+      expect(colData[i] >= colData[i - 1]).toBeTrue();
+    }
+
+    await headerCells[col].click();
+    fixture.detectChanges();
+    direction = await headerCells[1].getSortDirection();
+    data = await table.getCellTextByIndex();
+    colData = data.map(row => row[col]);
+    expect(direction).toEqual("desc");
+    for(let i = 1; i < colData.length; i ++){
+      expect(colData[i] <= colData[i - 1]).toBeTrue();
+    }
   })
 
 
