@@ -5,7 +5,7 @@ import { MatTable } from '@angular/material/table';
 import {TableDataSource, TableDataType} from './table-datasource';
 import {SelectionModel} from "@angular/cdk/collections";
 import {ActivatedRoute} from "@angular/router";
-import {TableData} from "../data/table-data";
+import {TableData} from "./table-data";
 
 @Component({
   selector: 'app-table',
