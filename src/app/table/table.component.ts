@@ -22,8 +22,9 @@ export class TableComponent implements AfterViewInit {
   allowMultipleSelection: boolean = false;
   selection = new SelectionModel<TableDataType>(this.allowMultipleSelection, [])
 
+  tableDataColumns = Object.keys(TableData[0])
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = this.tableDataColumns.slice()
 
   activatedRouteData = this.activatedRoute.data.subscribe(data => {
     this.showCheckbox = data["showCheckbox"] === null ? false : data["showCheckbox"]
