@@ -77,5 +77,9 @@ describe('TableComponent', () => {
     expect(component.isAllSelected()).toBeFalse();
   })
 
+  it('should be able to sort ascending', () => {
+
+  })
+
 
 });
