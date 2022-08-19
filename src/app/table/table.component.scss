@@ -1,3 +1,10 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
 .full-width-table {
   width: 100%;
+}
+
+.mat-row {
+  cursor: pointer;
 }
