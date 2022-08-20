@@ -21,6 +21,8 @@ export class TableComponent implements AfterViewInit {
   showCheckbox: boolean = false;
   allowMultipleSelection: boolean = false;
   selection = new SelectionModel<TableDataType>(this.allowMultipleSelection, [])
+  showEdit: boolean = false;
+  showDelete: boolean = false;
 
   tableDataColumns = Object.keys(TableData[0])
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */

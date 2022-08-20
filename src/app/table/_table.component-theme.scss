@@ -9,7 +9,7 @@
   $primary-palette: map.get($color-config, 'primary');
 
   .mat-row:hover {
-    background-color: mat.get-color-from-palette($primary-palette);
+    background-color: mat.get-color-from-palette($primary-palette, 100);
   }
 }
 
