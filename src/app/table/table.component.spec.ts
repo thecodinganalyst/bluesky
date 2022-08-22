@@ -13,6 +13,8 @@ import {FormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTableHarness} from "@angular/material/table/testing";
 import {MatSortHeaderHarness} from "@angular/material/sort/testing";
+import {MatIconModule} from "@angular/material/icon";
+import {MatIconHarness} from "@angular/material/icon/testing";
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -26,6 +28,7 @@ describe('TableComponent', () => {
         FormsModule,
         NoopAnimationsModule,
         MatCheckboxModule,
+        MatIconModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
@@ -104,5 +107,35 @@ describe('TableComponent', () => {
     }
   })
 
+  it('should show edit icon when showEdit is enabled', async () => {
+    component.showEdit = true;
+    component.showDelete = false;
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    let editIcons = await loader.getAllHarnesses(MatIconHarness.with({name: "edit"}));
+    expect(editIcons.length).toBeGreaterThan(0);
+    let deleteIcons = await loader.getAllHarnesses(MatIconHarness.with({name: "delete"}));
+    expect(deleteIcons.length).toEqual(0);
+  })
+
+  it('should show delete icon when showDelete is enabled', async () => {
+    component.showEdit = false;
+    component.showDelete = true;
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    let editIcons = await loader.getAllHarnesses(MatIconHarness.with({name: "edit"}));
+    expect(editIcons.length).toEqual(0);
+    let deleteIcons = await loader.getAllHarnesses(MatIconHarness.with({name: "delete"}));
+    expect(deleteIcons.length).toBeGreaterThan(0);
+  })
+
+  it('should not show edit and delete icons by default', async () => {
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    let editIcons = await loader.getAllHarnesses(MatIconHarness.with({name: "edit"}));
+    expect(editIcons.length).toEqual(0);
+    let deleteIcons = await loader.getAllHarnesses(MatIconHarness.with({name: "delete"}));
+    expect(deleteIcons.length).toEqual(0);
+  })
 
 });
