@@ -7,7 +7,7 @@ import {TableComponent} from "./table/table.component";
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent},
   { path: "tree", component: TreeComponent},
-  { path: "table", component: TableComponent, data: { showCheckbox: true, allowMultipleSelection: true } }
+  { path: "table", component: TableComponent, data: { showCheckbox: true, allowMultipleSelection: true, showEdit: true, showDelete: true } }
 ];
 
 @NgModule({
