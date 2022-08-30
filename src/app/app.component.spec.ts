@@ -21,6 +21,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {provideMockStore} from "@ngrx/store/testing";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -50,7 +51,8 @@ describe('AppComponent', () => {
         MatPaginatorModule,
         MatSortModule,
         MatCheckboxModule
-      ]
+      ],
+      providers: [provideMockStore()]
     }).compileComponents();
   });
 
