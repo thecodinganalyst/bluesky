@@ -22,6 +22,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {StoreModule} from "@ngrx/store";
+import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {featureReducer} from "./store/feature.reducer";
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    StoreModule.forRoot({feature: featureReducer, router: routerReducer}),
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
