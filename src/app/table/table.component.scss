@@ -9,3 +9,23 @@
 .mat-column-edit, .mat-column-delete {
   width: 4em;
 }
+
+.table-title {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-title span{
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.table-title .search-form{
+  border-radius: 20px;
+}
+
+.table-title .search-form input, button {
+  border-radius: 20px;
+  margin-left: 1em;
+}
