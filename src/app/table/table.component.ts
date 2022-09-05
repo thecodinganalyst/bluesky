@@ -27,6 +27,7 @@ export class TableComponent implements AfterViewInit, OnInit {
   selection = new SelectionModel<TableDataType>(this.allowMultipleSelection, [])
   showEdit: boolean = false;
   showDelete: boolean = false;
+  showAdd: boolean = false;
   title?: string;
 
   tableDataColumns = Object.keys(TableData[0])
@@ -38,6 +39,7 @@ export class TableComponent implements AfterViewInit, OnInit {
     this.allowMultipleSelection = data["allowMultipleSelection"] === null ? false : data["allowMultipleSelection"]
     this.showEdit = data["showEdit"] === null ? false : data["showEdit"]
     this.showDelete = data["showDelete"] === null ? false : data["showDelete"]
+    this.showAdd = data["showAdd"] === null ? false : data["showAdd"]
   })
 
   constructor(private activatedRoute: ActivatedRoute, private store: Store) {
@@ -47,7 +49,7 @@ export class TableComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.store.select(selectTitle).subscribe(title => this.title = title);
   }
-  
+
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

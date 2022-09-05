@@ -15,6 +15,8 @@ import {MatTableHarness} from "@angular/material/table/testing";
 import {MatSortHeaderHarness} from "@angular/material/sort/testing";
 import {MatIconModule} from "@angular/material/icon";
 import {MatIconHarness} from "@angular/material/icon/testing";
+import {MatButtonHarness} from "@angular/material/button/testing";
+import {provideMockStore} from "@ngrx/store/testing";
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -33,7 +35,8 @@ describe('TableComponent', () => {
         MatSortModule,
         MatTableModule,
         AppRoutingModule
-      ]
+      ],
+      providers: [provideMockStore()]
     }).compileComponents();
   }));
 
@@ -136,6 +139,22 @@ describe('TableComponent', () => {
     expect(editIcons.length).toEqual(0);
     let deleteIcons = await loader.getAllHarnesses(MatIconHarness.with({name: "delete"}));
     expect(deleteIcons.length).toEqual(0);
+  })
+
+  it('should show add button when showAdd is enabled', async () => {
+    component.showAdd = true;
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    let addButton = await loader.getAllHarnesses(MatButtonHarness.with({text: "addAdd"}));
+    expect(addButton.length).toBeGreaterThan(0);
+  })
+
+  it('should not show add button when showAdd is disabled', async () => {
+    component.showAdd = false;
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    let addButton = await loader.getAllHarnesses(MatButtonHarness.with({text: "addAdd"}));
+    expect(addButton.length).toBe(0);
   })
 
 });
