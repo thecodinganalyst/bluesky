@@ -27,6 +27,7 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {featureReducer} from "./store/feature.reducer";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {tableReducer} from "./store/table.reducer";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import {MatInputModule} from "@angular/material/input";
     MatPaginatorModule,
     MatSortModule,
     MatCheckboxModule,
-    StoreModule.forRoot({feature: featureReducer, router: routerReducer}),
+    StoreModule.forRoot({feature: featureReducer, router: routerReducer, table: tableReducer}),
     StoreRouterConnectingModule.forRoot(),
     MatFormFieldModule,
     MatInputModule
