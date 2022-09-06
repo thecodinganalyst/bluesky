@@ -14,6 +14,7 @@
   padding: 2rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .table-title span{
@@ -24,4 +25,61 @@
 .table-title button {
   border-radius: 20px;
   margin-left: 1em;
+}
+
+@media screen and (max-width: 500px){
+  :host ::ng-deep .table-title{
+    padding: 1em 1em 3em 1em;
+    .mat-form-field {
+      width: 100%;
+      margin-top: 3em;
+      position: absolute;
+      left: 0;
+    }
+    .mat-form-field-outline{
+      border: 0;
+    }
+    .mat-form-field-outline-start{
+      border: 0;
+    }
+    .mat-form-field-outline-gap{
+      border: 0;
+    }
+    .mat-form-field-outline-end{
+      border: 0;
+    }
+  }
+}
+
+:host ::ng-deep .table-title{
+  .mat-form-field-wrapper {
+    margin: 0;
+    padding-bottom: 0;
+    .mat-form-field-flex {
+      margin-top: 0;
+      .mat-form-field-outline {
+        top: 0;
+      }
+      .mat-form-field-prefix {
+        top: 0;
+        padding: 0.5em 0 0.5em 0;
+      }
+      .mat-form-field-infix {
+        border-top: 0;
+        padding: 0.5em;
+        input.mat-input-element {
+          margin-top: 0;
+          padding-top: 4.125px;
+          padding-bottom: 4.125px;
+        }
+        .mat-form-field-label-wrapper {
+          top: 0;
+          padding-top: 0;
+        }
+      }
+    }
+  }
+  button {
+    vertical-align: top;
+  }
 }
