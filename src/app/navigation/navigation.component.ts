@@ -3,7 +3,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Store} from "@ngrx/store";
-import {selectTitle} from "../store/router.selector";
 import {appNameSelector} from "../store/feature.selector";
 
 @Component({
@@ -26,9 +25,7 @@ export class NavigationComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.store.select(selectTitle).subscribe(title => this.title = title);
-    this.store.select(appNameSelector).subscribe(appName => this.appName = appName);
-    if(!this.title) this.title = this.appName;
+    this.store.select(appNameSelector).subscribe(appName => this.title = appName);
   }
 
 }
