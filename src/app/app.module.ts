@@ -28,6 +28,10 @@ import {featureReducer} from "./store/feature.reducer";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {tableReducer} from "./store/table.reducer";
+import { FormComponent } from './form/form.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import {tableReducer} from "./store/table.reducer";
     NavigationComponent,
     DashboardComponent,
     TreeComponent,
-    TableComponent
+    TableComponent,
+    FormComponent
   ],
   imports: [
     AppRoutingModule,
@@ -58,7 +63,10 @@ import {tableReducer} from "./store/table.reducer";
     StoreModule.forRoot({feature: featureReducer, router: routerReducer, table: tableReducer}),
     StoreRouterConnectingModule.forRoot(),
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
