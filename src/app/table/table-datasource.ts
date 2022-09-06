@@ -3,13 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import {TableData} from "./table-data";
-
-type TableItemType = typeof TableData[number];
-
-export type TableDataType = {
-  [Property in keyof TableItemType as string]: TableItemType[Property];
-}
+import {TableDataType} from "../store/table-data";
 
 /**
  * Data source for the Table view. This class should
@@ -17,12 +11,14 @@ export type TableDataType = {
  * (including sorting, pagination, and filtering).
  */
 export class TableDataSource extends DataSource<TableDataType> {
+  masterData: TableDataType[];
   data: TableDataType[];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
   constructor(data: TableDataType[]) {
     super();
+    this.masterData = data;
     this.data = data;
   }
 
@@ -49,7 +45,6 @@ export class TableDataSource extends DataSource<TableDataType> {
    * any open connections or free any held resources that were set up during connect.
    */
   disconnect(): void {}
-
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.

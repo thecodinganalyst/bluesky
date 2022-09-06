@@ -7,9 +7,14 @@
 
   // Get the primary color palette from the color-config.
   $primary-palette: map.get($color-config, 'primary');
+  $accent-palette: map.get($color-config, 'accent');
 
   .mat-row:hover {
     background-color: mat.get-color-from-palette($primary-palette, 100);
+  }
+
+  .mat-header-cell {
+    background-color: mat.get-color-from-palette($accent-palette, 200);
   }
 }
 

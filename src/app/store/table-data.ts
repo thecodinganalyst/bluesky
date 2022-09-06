@@ -20,3 +20,9 @@ export const TableData = [
   {id: 19, name: 'Potassium'},
   {id: 20, name: 'Calcium'},
 ]
+
+type TableItemType = typeof TableData[number];
+
+export type TableDataType = {
+  [Property in keyof TableItemType as string]: TableItemType[Property];
+}

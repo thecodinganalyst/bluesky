@@ -15,6 +15,12 @@ import {MatTableHarness} from "@angular/material/table/testing";
 import {MatSortHeaderHarness} from "@angular/material/sort/testing";
 import {MatIconModule} from "@angular/material/icon";
 import {MatIconHarness} from "@angular/material/icon/testing";
+import {MatButtonHarness} from "@angular/material/button/testing";
+import {MatInputHarness} from "@angular/material/input/testing";
+import {tableReducer} from "../store/table.reducer";
+import {StoreModule} from "@ngrx/store";
+import {featureReducer} from "../store/feature.reducer";
+import {routerReducer, StoreRouterConnectingModule} from "@ngrx/router-store";
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -32,8 +38,10 @@ describe('TableComponent', () => {
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        AppRoutingModule
-      ]
+        AppRoutingModule,
+        StoreModule.forRoot({feature: featureReducer, router: routerReducer, table: tableReducer}),
+        StoreRouterConnectingModule.forRoot(),
+      ],
     }).compileComponents();
   }));
 
@@ -136,6 +144,34 @@ describe('TableComponent', () => {
     expect(editIcons.length).toEqual(0);
     let deleteIcons = await loader.getAllHarnesses(MatIconHarness.with({name: "delete"}));
     expect(deleteIcons.length).toEqual(0);
+  })
+
+  it('should show add button when showAdd is enabled', async () => {
+    component.showAdd = true;
+    fixture.detectChanges();
+    let addButton = await loader.getAllHarnesses(MatButtonHarness.with({text: "addAdd"}));
+    expect(addButton.length).toBeGreaterThan(0);
+  })
+
+  it('should not show add button when showAdd is disabled', async () => {
+    component.showAdd = false;
+    fixture.detectChanges();
+    let addButton = await loader.getAllHarnesses(MatButtonHarness.with({text: "addAdd"}));
+    expect(addButton.length).toBe(0);
+  })
+
+  it('should show the search input when showSearch is enabled', async () => {
+    component.showSearch = true;
+    fixture.detectChanges();
+    let searchInput = await loader.getAllHarnesses(MatInputHarness.with({placeholder: "Search"}));
+    expect(searchInput.length).toBeGreaterThan(0);
+  })
+
+  it('should not show the search input when showSearch is disabled', async () => {
+    component.showSearch = false;
+    fixture.detectChanges();
+    let searchInput = await loader.getAllHarnesses(MatInputHarness.with({placeholder: "Search"}));
+    expect(searchInput.length).toBe(0);
   })
 
 });

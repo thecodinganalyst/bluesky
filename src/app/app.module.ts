@@ -25,6 +25,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {StoreModule} from "@ngrx/store";
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {featureReducer} from "./store/feature.reducer";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {tableReducer} from "./store/table.reducer";
 
 @NgModule({
   declarations: [
@@ -52,8 +55,10 @@ import {featureReducer} from "./store/feature.reducer";
     MatPaginatorModule,
     MatSortModule,
     MatCheckboxModule,
-    StoreModule.forRoot({feature: featureReducer, router: routerReducer}),
-    StoreRouterConnectingModule.forRoot()
+    StoreModule.forRoot({feature: featureReducer, router: routerReducer, table: tableReducer}),
+    StoreRouterConnectingModule.forRoot(),
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

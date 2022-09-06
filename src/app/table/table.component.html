@@ -1,6 +1,15 @@
 <div class="mat-elevation-z8">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
-
+  <div class="table-title">
+    <span>{{title}}</span>
+    <form>
+      <mat-form-field *ngIf="showSearch" appearance="outline" floatLabel="always">
+        <mat-icon matPrefix>search</mat-icon>
+        <input type="search" matInput placeholder="Search" (keyup)="filterTable($event)">
+      </mat-form-field>
+      <button *ngIf="showAdd" mat-flat-button color="primary"><mat-icon matPrefix>add</mat-icon>Add</button>
+    </form>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="full-width-table" matSort aria-label="Elements">
     <!-- Checkbox Column -->
     <ng-container matColumnDef="{{checkboxColumn}}">
       <th mat-header-cell *matHeaderCellDef>
@@ -43,7 +52,7 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
