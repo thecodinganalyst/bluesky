@@ -32,6 +32,7 @@ import { FormComponent } from './form/form.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
+import {formReducer} from "./store/form.reducer";
 
 @NgModule({
   declarations: [
@@ -60,7 +61,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatSortModule,
     MatCheckboxModule,
-    StoreModule.forRoot({feature: featureReducer, router: routerReducer, table: tableReducer}),
+    StoreModule.forRoot({
+      feature: featureReducer,
+      form: formReducer,
+      router: routerReducer,
+      table: tableReducer}
+    ),
     StoreRouterConnectingModule.forRoot(),
     MatFormFieldModule,
     MatInputModule,
