@@ -1,4 +1,8 @@
-export class ControlBase<T> {
+export interface ControlBase<T> {
+  label?: string;
+}
+
+export class Control<T> implements ControlBase<T>{
   value: T|undefined;
   key: string;
   label: string;
@@ -29,5 +33,18 @@ export class ControlBase<T> {
     this.type = options.type || '';
     this.size = options.size || 1;
     this.options = options.options || [];
+  }
+}
+
+export class ControlGroup<T> implements ControlBase<T>{
+  controls: ControlBase<T>[];
+  label: string;
+
+  constructor(options: {
+    label?: string,
+    controls?: ControlBase<T>[]
+  } = {}) {
+    this.controls = options.controls || [];
+    this.label = options.label || '';
   }
 }

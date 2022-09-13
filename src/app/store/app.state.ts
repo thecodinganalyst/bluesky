@@ -1,7 +1,6 @@
 import {RouterReducerState} from "@ngrx/router-store";
 import {TableDataType} from "./table-data";
-import {ControlTextbox} from "./control-textbox";
-import {ControlDropdown} from "./control-dropdown";
+import {ControlGroup} from "./control-base";
 
 export interface AppState {
   feature: FeatureState;
@@ -19,24 +18,5 @@ export interface TableState {
 }
 
 export interface FormState {
-  definition: FormDefinition;
-}
-
-export interface FormDefinition {
-  givenName: ControlTextbox;
-  surName: ControlTextbox;
-  contactNo: ControlTextbox;
-  email: ControlTextbox;
-  address: Address;
-  message: ControlTextbox;
-}
-
-export interface Address {
-  street: ControlTextbox;
-  block: ControlTextbox;
-  unit: ControlTextbox;
-  city: ControlTextbox;
-  state?: ControlTextbox;
-  country: ControlDropdown;
-  postalCode: ControlTextbox;
+  controls: ControlGroup<any>;
 }

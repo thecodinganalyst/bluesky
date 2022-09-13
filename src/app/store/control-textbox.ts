@@ -1,5 +1,5 @@
-import {ControlBase} from "./control-base";
+import {Control} from "./control-base";
 
-export class ControlTextbox extends ControlBase<string>{
+export class ControlTextbox extends Control<string>{
   override controlType = 'textbox'
 }
