@@ -1,26 +1,25 @@
-.full-width {
-  width: 100%;
+form {
+  padding: 20px;
 }
 
-.shipping-card {
-  min-width: 120px;
-}
-
-.mat-radio-button {
-  display: block;
-  margin: 5px 0;
-}
-
-.row {
+fieldset {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
 }
 
-.col {
-  flex: 1;
-  margin-right: 20px;
+@function restrict($desired){
+  @return clamp(0%, #{$desired}, 100%)
 }
 
-.col:last-child {
-  margin-right: 0;
+@mixin fixed-size-flex($width){
+  flex: 1 1 calc(restrict(#{$width}) - 10px);
+}
+
+mat-form-field {
+  display: block;
+  @include fixed-size-flex(var(--size))
 }
