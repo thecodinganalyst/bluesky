@@ -1,4 +1,5 @@
 import {createReducer} from "@ngrx/store";
+import {countries} from "./country-list";
 
 export const initialState = {
   title: 'Delivery Form',
@@ -13,7 +14,8 @@ export const initialState = {
     { name: 'city', label: 'City', value: '', required: true, order: 8, size: '50%', controlType: 'textbox'},
     { name: 'postalCode', label: 'Postal Code', value: '', required: true, order: 9, size: '50%', controlType: 'textbox'},
     { name: 'stateProvince', label: 'State/Province', value: '', required: true, order: 10, size: '100%', controlType: 'textbox'},
-    { name: 'country', label: 'Country', value: '', required: true, order: 11, size: '100%', controlType: 'textbox'},
+    { name: 'country', label: 'Country', value: 'SG', required: true, order: 11, size: '100%', controlType: 'dropdown',
+      options: countries.map((country) => ({display: country.name, value: country.code}))},
     { name: 'message', label: 'Message', value: '', required: true, order: 12, size: '500%', controlType: 'textarea'},
   ]
 
