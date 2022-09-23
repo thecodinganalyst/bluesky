@@ -60,11 +60,13 @@ describe('NavigationComponent', () => {
   it('should show route title in toolbar', async () => {
     var navList = await loader.getHarness(MatNavListHarness);
     var navListItems = await navList.getItems();
-    expect(navListItems.length).toBe(3);
-    expect(await navListItems[2].getText()).toBe("Table");
+    expect(navListItems.length).toBe(4);
+    expect(await navListItems[2].getText()).toBe("Form");
     await navListItems[2].click();
+    expect(await navListItems[3].getText()).toBe("Table");
+    await navListItems[3].click();
     fixture.detectChanges();
-    expect(component.title).toBe("Table Route");
+    expect(component.title).toBe("Blue Sky");
   });
 });
 
