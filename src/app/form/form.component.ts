@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup , Validators} from '@angular/forms';
 import {Store} from "@ngrx/store";
 import {Control} from "../store/control";
@@ -10,9 +10,9 @@ import {formSelector} from "../store/form.selector";
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit{
-  @Input() formGroup: FormGroup = new FormGroup<any>({})
+  formGroup: FormGroup = new FormGroup<any>({})
   formTitle?: string
-  @Input() controls: Array<Control> = []
+  controls: Array<Control> = []
 
   constructor(private fb: FormBuilder, private store: Store) {}
 

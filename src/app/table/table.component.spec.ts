@@ -9,7 +9,7 @@ import {AppRoutingModule} from "../app-routing.module";
 import {TestbedHarnessEnvironment} from "@angular/cdk/testing/testbed";
 import {HarnessLoader} from "@angular/cdk/testing";
 import {MatCheckboxHarness} from "@angular/material/checkbox/testing";
-import {FormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTableHarness} from "@angular/material/table/testing";
 import {MatSortHeaderHarness} from "@angular/material/sort/testing";
@@ -21,6 +21,8 @@ import {tableReducer} from "../store/table.reducer";
 import {StoreModule} from "@ngrx/store";
 import {featureReducer} from "../store/feature.reducer";
 import {routerReducer, StoreRouterConnectingModule} from "@ngrx/router-store";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -31,10 +33,12 @@ describe('TableComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TableComponent ],
       imports: [
-        FormsModule,
+        ReactiveFormsModule,
         NoopAnimationsModule,
         MatCheckboxModule,
+        MatFormFieldModule,
         MatIconModule,
+        MatInputModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
