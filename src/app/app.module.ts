@@ -33,6 +33,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import {formReducer} from "./store/form.reducer";
+import {NgrxFormsModule} from "ngrx-forms";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {formReducer} from "./store/form.reducer";
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgrxFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
