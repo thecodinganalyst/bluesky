@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup , Validators} from '@angular/forms';
 import {Store} from "@ngrx/store";
-import {Control} from "../store/control";
+import {ActionButton, Control} from "../store/control";
 import {formSelector} from "../store/form.selector";
 
 @Component({
@@ -13,6 +13,7 @@ export class FormComponent implements OnInit{
   formGroup: FormGroup = new FormGroup<any>({})
   formTitle?: string
   controls: Array<Control> = []
+  actionButtons: Array<ActionButton> = []
 
   constructor(private fb: FormBuilder, private store: Store) {}
 
@@ -25,6 +26,9 @@ export class FormComponent implements OnInit{
     this.store.select(formSelector.controls).subscribe(controls => {
       this.controls = [...controls].sort((a, b) => this.sortFn(a.order, b.order))
       this.formGroup = this.fb.group(this.getFormGroup(this.controls))
+    })
+    this.store.select(formSelector.actionButtons).subscribe(actionButtons => {
+      this.actionButtons = [...actionButtons].sort((a, b) => this.sortFn(a.order, b.order))
     })
   }
 

@@ -16,9 +16,14 @@ export const initialState = {
     { name: 'stateProvince', label: 'State/Province', value: '', required: true, order: 10, size: '100%', controlType: 'textbox'},
     { name: 'country', label: 'Country', value: 'SG', required: true, order: 11, size: '100%', controlType: 'dropdown',
       options: countries.map((country) => ({display: country.name, value: country.code}))},
-    { name: 'message', label: 'Message', value: '', required: true, order: 12, size: '500%', controlType: 'textarea'},
+    { name: 'message', label: 'Message', value: '', required: true, order: 12, size: '500%', controlType: 'textarea'}
+  ],
+  actionButtons: [
+    { name: 'submit', label: 'Submit', behavior: 'submit', order: 13, controlType: 'button'},
+    { name: 'cancel', label: 'Cancel', behavior: 'cancel', order: 14, controlType: 'button'},
+    { name: 'reset', label: 'Reset', behavior: 'reset', color: 'accent', order: 15, controlType: 'button'},
+    { name: 'delete', label: 'Delete', behavior: 'cancel', color: 'warn', order: 14, controlType: 'button'}
   ]
-
 }
 
 export const formReducer = createReducer(initialState);

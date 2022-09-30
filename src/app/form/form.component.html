@@ -11,6 +11,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="formGroup.invalid" type="submit">Submit</button>
+    <ng-container *ngFor="let action of actionButtons">
+      <button mat-raised-button [color]="action.color || 'primary'" [disabled]="action.behavior === 'submit' && formGroup.invalid" [type]="action.behavior">{{action.label}}</button>
+    </ng-container>
   </fieldset>
 </form>

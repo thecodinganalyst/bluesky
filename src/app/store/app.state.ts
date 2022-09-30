@@ -1,6 +1,6 @@
 import {RouterReducerState} from "@ngrx/router-store";
 import {TableDataType} from "./table-data";
-import {Control} from "./control";
+import {ActionButton, Control} from "./control";
 
 export interface AppState {
   feature: FeatureState;
@@ -20,4 +20,5 @@ export interface TableState {
 export interface FormState {
   title: string;
   controls: Control[];
+  actionButtons: ActionButton[];
 }
