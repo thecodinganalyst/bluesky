@@ -11,6 +11,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button color="primary" [disabled]="formGroup.invalid" type="submit">Submit</button>
   </fieldset>
 </form>

@@ -20,6 +20,7 @@ import {MatInputHarness} from "@angular/material/input/testing";
 import {MatSelectHarness} from "@angular/material/select/testing";
 import {countries} from "../store/country-list";
 import {MatOptionModule} from "@angular/material/core";
+import {MatButtonHarness} from "@angular/material/button/testing";
 
 function sortFn(a: number | undefined, b: number | undefined): number {
   if(a === undefined && b === undefined) return 0
@@ -100,6 +101,21 @@ describe('FormComponent', () => {
     await select.open();
     let options = await select.getOptions();
     expect(options.length).toBe(countries.length);
+  });
+
+  it('submit button should be disabled if the data in the form is not complete', async () => {
+    let submitButton = await loader.getHarness(MatButtonHarness.with({text: 'Submit'}))
+    expect(submitButton).toBeTruthy();
+    expect(await submitButton.isDisabled()).toBeTrue();
+    let inputs = await loader.getAllHarnesses(MatInputHarness)
+    for (const input of inputs) {
+      await input.setValue("something")
+    }
+    let selects = await loader.getAllHarnesses(MatSelectHarness)
+    for (const select of selects){
+      await select.clickOptions()
+    }
+    expect(await submitButton.isDisabled()).toBeFalse()
   });
 
 });
