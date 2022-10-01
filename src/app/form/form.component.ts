@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup , Validators} from '@angular/forms';
 import {Store} from "@ngrx/store";
-import {ActionButton, Control} from "../store/control";
-import {formSelector} from "../store/form.selector";
+import {ActionButton, Control} from "../store/form/control";
+import {formSelector} from "../store/form/form.selector";
 
 @Component({
   selector: 'app-form',

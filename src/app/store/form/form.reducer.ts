@@ -22,7 +22,7 @@ export const initialState = {
     { name: 'submit', label: 'Submit', behavior: 'submit', order: 13, controlType: 'button'},
     { name: 'cancel', label: 'Cancel', behavior: 'cancel', order: 14, controlType: 'button'},
     { name: 'reset', label: 'Reset', behavior: 'reset', color: 'accent', order: 15, controlType: 'button'},
-    { name: 'delete', label: 'Delete', behavior: 'cancel', color: 'warn', order: 14, controlType: 'button'}
+    { name: 'delete', label: 'Delete', behavior: 'cancel', color: 'warn', order: 16, controlType: 'button'}
   ]
 }
 

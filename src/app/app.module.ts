@@ -27,12 +27,12 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {featureReducer} from "./store/feature.reducer";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {tableReducer} from "./store/table.reducer";
+import {tableReducer} from "./store/table/table.reducer";
 import { FormComponent } from './form/form.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
-import {formReducer} from "./store/form.reducer";
+import {formReducer} from "./store/form/form.reducer";
 
 @NgModule({
   declarations: [

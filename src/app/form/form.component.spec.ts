@@ -11,14 +11,14 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {StoreModule} from "@ngrx/store";
 import {featureReducer} from "../store/feature.reducer";
 import {routerReducer, StoreRouterConnectingModule} from "@ngrx/router-store";
-import {formReducer, initialState} from "../store/form.reducer";
+import {formReducer, initialState} from "../store/form/form.reducer";
 import {HarnessLoader} from "@angular/cdk/testing";
 import {TestbedHarnessEnvironment} from "@angular/cdk/testing/testbed";
 import {AppRoutingModule} from "../app-routing.module";
 import {MatFormFieldHarness} from "@angular/material/form-field/testing";
 import {MatInputHarness} from "@angular/material/input/testing";
 import {MatSelectHarness} from "@angular/material/select/testing";
-import {countries} from "../store/country-list";
+import {countries} from "../store/form/country-list";
 import {MatOptionModule} from "@angular/material/core";
 import {MatButtonHarness} from "@angular/material/button/testing";
 
