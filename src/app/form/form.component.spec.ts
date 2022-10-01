@@ -109,6 +109,7 @@ describe('FormComponent', () => {
     expect(await submitButton.isDisabled()).toBeTrue();
     let inputs = await loader.getAllHarnesses(MatInputHarness)
     for (const input of inputs) {
+      if(!await input.isRequired()) continue
       await input.setValue("something")
     }
     let selects = await loader.getAllHarnesses(MatSelectHarness)
