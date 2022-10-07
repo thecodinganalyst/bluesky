@@ -16,7 +16,7 @@
               [color]="button.color || 'primary'"
               [disabled]="button.behavior === 'submit' && formGroup.invalid"
               [type]="button.behavior"
-              (click)="buttonClicked(button.action)">
+              (click)="button.behavior !== 'submit' && buttonClicked(button.action)">
         {{button.label}}
       </button>
     </ng-container>
