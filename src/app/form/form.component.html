@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="formGroup" (ngSubmit)="formSubmit()" action="">
   <h2>{{formTitle}}</h2>
   <fieldset>
     <mat-form-field appearance="outline" *ngFor="let control of controls" style="--size:{{control.size}}">
@@ -11,8 +11,14 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <ng-container *ngFor="let action of actionButtons">
-      <button mat-raised-button [color]="action.color || 'primary'" [disabled]="action.behavior === 'submit' && formGroup.invalid" [type]="action.behavior">{{action.label}}</button>
+    <ng-container *ngFor="let button of actionButtons">
+      <button mat-raised-button
+              [color]="button.color || 'primary'"
+              [disabled]="button.behavior === 'submit' && formGroup.invalid"
+              [type]="button.behavior"
+              (click)="buttonClicked(button.action)">
+        {{button.label}}
+      </button>
     </ng-container>
   </fieldset>
 </form>

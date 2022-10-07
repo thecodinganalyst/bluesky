@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup , Validators} from '@angular/forms';
 import {Store} from "@ngrx/store";
 import {ActionButton, Control} from "../store/form/control";
 import {formSelector} from "../store/form/form.selector";
+import {Actions} from "../store/ActionMap";
 
 @Component({
   selector: 'app-form',
@@ -17,8 +18,18 @@ export class FormComponent implements OnInit{
 
   constructor(private fb: FormBuilder, private store: Store) {}
 
-  onSubmit(): void {
-    alert('Submitted!')
+  buttonClicked(action: string): void {
+    if(action){
+      try{
+        this.store.dispatch(Actions.retrieveAction(action)());
+      }catch (e){
+        console.log(e)
+      }
+    }
+  }
+
+  formSubmit(): void {
+
   }
 
   ngOnInit(): void {
