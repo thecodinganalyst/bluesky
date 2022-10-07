@@ -119,4 +119,13 @@ describe('FormComponent', () => {
     expect(await submitButton.isDisabled()).toBeFalse()
   });
 
+  it('should display the actionButtons in the order specified', async () => {
+    let ordered = [...initialState.actionButtons].sort((a, b) => sortFn(a.order, b.order));
+    let fields = await loader.getAllHarnesses(MatButtonHarness);
+    for(let i = 0; i < fields.length; i ++){
+      let label = await fields[i].getText()
+      expect(label).toBe(ordered[i].label)
+    }
+  });
+
 });
