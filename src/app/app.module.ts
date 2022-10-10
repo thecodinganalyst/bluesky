@@ -33,6 +33,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import {formReducer} from "./store/form/form.reducer";
+import { EffectsModule } from '@ngrx/effects';
+import {AppEffects} from "./store/app.effects";
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import {formReducer} from "./store/form/form.reducer";
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

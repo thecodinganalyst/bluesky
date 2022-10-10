@@ -5,7 +5,9 @@ import {FormActions} from "./form/form.actions";
 
 const messageShowWarning = Actions.registerActionWithProps("[Message] Show warning", props<MessagePayload>())
 
+const navigationBack = Actions.registerAction("[Navigation] Back")
+
 export const AppActions = {
-  messageShowWarning, FormActions
+  messageShowWarning, navigationBack, FormActions
 }
 
