@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: "dashboard", component: DashboardComponent, title: "Dashboard"},
   { path: "tree", component: TreeComponent, title: "Tree"},
   { path: "form", component: FormComponent, title: "Form"},
-  { path: "table", component: TableComponent, title: "Table", data: { showCheckbox: true, allowMultipleSelection: true, showEdit: true, showDelete: true, showAdd: true, showSearch: true } }
+  { path: "table", component: TableComponent, title: "Table", data: { showCheckbox: true, allowMultipleSelection: true, showEdit: true, showDelete: true, showAdd: true, showSearch: true } },
+  { path: "data", component: TableComponent, title: "Data", data: { showCheckbox: true, allowMultipleSelection: true, showEdit: true, showDelete: true, showAdd: true, showSearch: true } }
 ];
 
 @NgModule({
