@@ -1,0 +1,11 @@
+{
+  "menu": [
+    { "title": "Dashboard", "path": "dashboard", "componentName": "dashboard" },
+    { "title": "Tree", "path": "tree", "componentName": "tree" },
+    { "title": "Form", "path": "form", "componentName": "form" },
+    { "title": "Table", "path": "table", "componentName": "table",
+      "data": { "showCheckbox": true, "allowMultipleSelection": true, "showEdit": true, "showDelete": true, "showAdd": true, "showSearch": true } },
+    { "title": "Data", "path": "data", "componentName": "table",
+      "data": { "showCheckbox": true, "allowMultipleSelection": true, "showEdit": true, "showDelete": true, "showAdd": true, "showSearch": true } }
+  ]
+}
