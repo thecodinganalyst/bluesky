@@ -1,0 +1,24 @@
+<form [formGroup]="formGroup" (ngSubmit)="formSubmit()" action="">
+  <h2>{{formTitle}}</h2>
+  <fieldset>
+    <mat-form-field appearance="outline" *ngFor="let control of controls" style="--size:{{control.size}}">
+      <mat-label>{{control.label}}</mat-label>
+      <input *ngIf="control.controlType === 'textbox'" type="{{control.type}}" matInput formControlName="{{control.name}}" />
+      <textarea *ngIf="control.controlType === 'textarea'" matInput formControlName="{{control.name}}" rows="{{calcTextAreaRow(control.size)}}"></textarea>
+      <mat-select *ngIf="control.controlType === 'dropdown'" formControlName="{{control.name}}">
+        <mat-option *ngFor="let option of control.options" [value]="option.value">
+          {{option.display}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <ng-container *ngFor="let button of actionButtons">
+      <button mat-raised-button
+              [color]="button.color || 'primary'"
+              [disabled]="button.behavior === 'submit' && formGroup.invalid"
+              [type]="button.behavior"
+              (click)= "buttonClicked(button.action)">
+        {{button.label}}
+      </button>
+    </ng-container>
+  </fieldset>
+</form>

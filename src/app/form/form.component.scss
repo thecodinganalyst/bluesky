@@ -1,0 +1,25 @@
+form {
+  padding: 20px;
+}
+
+fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+}
+
+@function restrict($desired){
+  @return clamp(0%, #{$desired}, 100%)
+}
+
+@mixin fixed-size-flex($width){
+  flex: 1 1 calc(restrict(#{$width}) - 10px);
+}
+
+mat-form-field {
+  display: block;
+  @include fixed-size-flex(var(--size))
+}

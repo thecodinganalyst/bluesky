@@ -6,8 +6,8 @@ import {SelectionModel} from "@angular/cdk/collections";
 import {ActivatedRoute} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {selectTitle} from "../store/router.selector";
-import {tableSelector} from "../store/table.selector";
-import {TableDataType} from "../store/table-data";
+import {tableSelector} from "../store/table/table.selector";
+import {TableDataType} from "../store/table/table-data";
 
 @Component({
   selector: 'app-table',

@@ -27,7 +27,14 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {featureReducer} from "./store/feature.reducer";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {tableReducer} from "./store/table.reducer";
+import {tableReducer} from "./store/table/table.reducer";
+import { FormComponent } from './form/form.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
+import {formReducer} from "./store/form/form.reducer";
+import { EffectsModule } from '@ngrx/effects';
+import {AppEffects} from "./store/app.effects";
 
 @NgModule({
   declarations: [
@@ -35,7 +42,8 @@ import {tableReducer} from "./store/table.reducer";
     NavigationComponent,
     DashboardComponent,
     TreeComponent,
-    TableComponent
+    TableComponent,
+    FormComponent
   ],
   imports: [
     AppRoutingModule,
@@ -55,10 +63,19 @@ import {tableReducer} from "./store/table.reducer";
     MatPaginatorModule,
     MatSortModule,
     MatCheckboxModule,
-    StoreModule.forRoot({feature: featureReducer, router: routerReducer, table: tableReducer}),
+    StoreModule.forRoot({
+      feature: featureReducer,
+      form: formReducer,
+      router: routerReducer,
+      table: tableReducer}
+    ),
     StoreRouterConnectingModule.forRoot(),
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
