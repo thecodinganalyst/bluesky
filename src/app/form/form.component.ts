@@ -29,7 +29,7 @@ export class FormComponent implements OnInit{
   }
 
   formSubmit(): void {
-
+    alert("Form Submitted")
   }
 
   ngOnInit(): void {

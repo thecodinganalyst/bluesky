@@ -20,8 +20,8 @@ export const initialState = {
     { name: 'message', label: 'Message', value: '', required: true, order: 12, size: '500%', controlType: 'textarea'}
   ],
   actionButtons: [
-    { name: 'submit', label: 'Submit', behavior: 'submit', order: 13, controlType: 'button', action: '[Form] Submit'},
-    { name: 'cancel', label: 'Cancel', behavior: 'cancel', order: 14, controlType: 'button', action: '[Navigation] Back'},
+    { name: 'submit', label: 'Submit', behavior: 'submit', order: 13, controlType: 'button'},
+    { name: 'cancel', label: 'Cancel', behavior: 'button', order: 14, controlType: 'button', action: '[Navigation] Back'},
     { name: 'reset', label: 'Reset', behavior: 'reset', color: 'accent', order: 15, controlType: 'button'},
     { name: 'delete', label: 'Delete', behavior: 'button', color: 'warn', order: 16, controlType: 'button', action: '[Message] Show warning'}
   ]
