@@ -4,6 +4,7 @@ import {Store} from "@ngrx/store";
 import {ActionButton, Control} from "../store/form/control";
 import {formSelector} from "../store/form/form.selector";
 import {Actions} from "../store/ActionMap";
+import {EMPTY, first, Observable} from "rxjs";
 
 @Component({
   selector: 'app-form',
@@ -12,9 +13,9 @@ import {Actions} from "../store/ActionMap";
 })
 export class FormComponent implements OnInit{
   formGroup: FormGroup = new FormGroup<any>({})
-  formTitle?: string
+  formTitle$: Observable<string> | undefined
   controls: Array<Control> = []
-  actionButtons: Array<ActionButton> = []
+  actionButtons$: Observable<Array<ActionButton>> = EMPTY
 
   constructor(private fb: FormBuilder, private store: Store) {}
 
@@ -33,14 +34,12 @@ export class FormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.store.select(formSelector.title).subscribe(title => this.formTitle = title)
-    this.store.select(formSelector.controls).subscribe(controls => {
-      this.controls = [...controls].sort((a, b) => this.sortFn(a.order, b.order))
+    this.formTitle$ = this.store.select(formSelector.title)
+    this.store.select(formSelector.controls).pipe(first()).subscribe(controls => {
+      this.controls = controls
       this.formGroup = this.fb.group(this.getFormGroup(this.controls))
     })
-    this.store.select(formSelector.actionButtons).subscribe(actionButtons => {
-      this.actionButtons = [...actionButtons].sort((a, b) => this.sortFn(a.order, b.order))
-    })
+    this.actionButtons$ = this.store.select(formSelector.actionButtons)
   }
 
   getFormGroup(controls: Control[]): {[key: string]: FormControl} {
@@ -49,13 +48,6 @@ export class FormComponent implements OnInit{
       frmCtlDict[ctl.name] = new FormControl(ctl.value, ctl.required ? Validators.required : null);
     })
     return frmCtlDict;
-  }
-
-  sortFn(a: number | undefined, b: number | undefined): number {
-    if(a === undefined && b === undefined) return 0
-    if(a === undefined && b !== undefined) return 1
-    if(a !== undefined && b === undefined) return -1
-    return a! - b!
   }
 
   calcTextAreaRow(width: string | undefined): number{

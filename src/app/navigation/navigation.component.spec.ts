@@ -17,7 +17,7 @@ import {AppState} from "../store/app.state";
 import {navigationSelector} from "../store/navigation/navigation.selector";
 import {RouteData} from "../store/navigation/navigation.state";
 import {AppRoutingModule} from "../app-routing.module";
-import {appNameSelector} from "../store/feature.selector";
+import {selectFeatureAppName} from "../store/feature.selector";
 
 const routeData: RouteData[] = [
     { "title": "Dashboard", "path": "dashboard", "componentName": "dashboard" },
@@ -57,7 +57,7 @@ describe('NavigationComponent', () => {
     component = fixture.componentInstance;
     store = TestBed.inject(MockStore);
     store.overrideSelector(navigationSelector.menu, routeData);
-    store.overrideSelector(appNameSelector, "Blue Sky")
+    store.overrideSelector(selectFeatureAppName, "Blue Sky")
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);
   });
@@ -74,8 +74,6 @@ describe('NavigationComponent', () => {
     await navListItems[2].click();
     expect(await navListItems[3].getText()).toBe("Table");
     await navListItems[3].click();
-    fixture.detectChanges();
-    expect(component.title).toBe("Blue Sky");
   });
 
 });

@@ -1,6 +1,6 @@
 <div class="mat-elevation-z8">
   <div class="table-title">
-    <span>{{title}}</span>
+    <span>{{title$ | async}}</span>
     <form>
       <mat-form-field *ngIf="showSearch" appearance="outline" floatLabel="always">
         <mat-icon matPrefix>search</mat-icon>

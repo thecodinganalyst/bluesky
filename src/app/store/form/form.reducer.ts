@@ -1,8 +1,9 @@
 import {createReducer, on} from "@ngrx/store";
 import {countries} from "./country-list";
 import {AppActions} from "../app.actions";
+import {FormState} from "./form.state";
 
-export const initialState = {
+export const initialState: FormState = {
   title: 'Delivery Form',
   controls: [
     { name: 'givenName', label: 'Given Name', value: '', required: true, order: 2, size: '50%', controlType: 'textbox'},
@@ -20,14 +21,14 @@ export const initialState = {
     { name: 'message', label: 'Message', value: '', required: true, order: 12, size: '500%', controlType: 'textarea'}
   ],
   actionButtons: [
-    { name: 'submit', label: 'Submit', behavior: 'submit', order: 13, controlType: 'button'},
-    { name: 'cancel', label: 'Cancel', behavior: 'button', order: 14, controlType: 'button', action: '[Navigation] Back'},
-    { name: 'reset', label: 'Reset', behavior: 'reset', color: 'accent', order: 15, controlType: 'button'},
-    { name: 'delete', label: 'Delete', behavior: 'button', color: 'warn', order: 16, controlType: 'button', action: '[Message] Show warning'}
+    { name: 'submit', label: 'Submit', behavior: 'submit', order: 13},
+    { name: 'cancel', label: 'Cancel', behavior: 'button', order: 14, action: '[Navigation] Back'},
+    { name: 'reset', label: 'Reset', behavior: 'reset', color: 'accent', order: 15},
+    { name: 'delete', label: 'Delete', behavior: 'button', color: 'warn', order: 16, action: '[Message] Show warning'}
   ]
 }
 
 export const formReducer = createReducer(
   initialState,
-  on(AppActions.FormActions.formSubmit, (state) => ({...state}))
+  on(AppActions.FormActions.formSubmit, (state): FormState => ({...state}))
 );
