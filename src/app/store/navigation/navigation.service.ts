@@ -14,7 +14,7 @@ export class NavigationService {
         path: item.path,
         title: item.title,
         component: componentMap.get(item.componentName),
-        data: {componentData: item.data}
+        data: item.data
       });
     }
     return routes;
