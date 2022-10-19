@@ -6,7 +6,6 @@ export interface Control {
   order?: number;
   controlType: 'textbox' | 'textarea' | 'dropdown';
   type?: 'color' | 'date' | 'datetime-local' | 'email' | 'month' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url' | 'week';
-  behavior: 'submit' | 'cancel' | 'reset' | 'danger';
   options?: ControlOption[];
   size?: string;
 }
@@ -21,6 +20,6 @@ export interface ActionButton {
   label: string;
   order?: number;
   behavior: 'submit' | 'reset' | 'button';
-  color: 'primary' | 'accent' | 'warn';
-  action: string;
+  color?: 'primary' | 'accent' | 'warn';
+  action?: string;
 }

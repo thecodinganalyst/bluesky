@@ -8,6 +8,7 @@ import {Store} from "@ngrx/store";
 import {selectTitle} from "../store/router.selector";
 import {tableSelector} from "../store/table/table.selector";
 import {TableDataType} from "../store/table/table-data";
+import {first, Observable} from "rxjs";
 
 @Component({
   selector: 'app-table',
@@ -29,7 +30,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   showDelete: boolean = false;
   showAdd: boolean = false;
   showSearch: boolean = false;
-  title?: string;
+  title$: Observable<string | undefined> | undefined;
   tableDataColumns?: string[];
   displayedColumns?: string[];
 
@@ -46,8 +47,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.store.select(selectTitle).subscribe(title => this.title = title);
-    this.store.select(tableSelector.data).subscribe(data => {
+    this.title$ = this.store.select(selectTitle)
+    this.store.select(tableSelector.data).pipe(first()).subscribe(data => {
       this.dataSource.data = data
       this.tableDataColumns = data.length > 0 ? Object.keys(data[0]): [];
       this.displayedColumns = this.tableDataColumns.slice();

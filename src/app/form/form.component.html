@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup" (ngSubmit)="formSubmit()" action="">
-  <h2>{{formTitle}}</h2>
+  <h2>{{formTitle$ | async}}</h2>
   <fieldset>
     <mat-form-field appearance="outline" *ngFor="let control of controls" style="--size:{{control.size}}">
       <mat-label>{{control.label}}</mat-label>
@@ -11,12 +11,12 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <ng-container *ngFor="let button of actionButtons">
+    <ng-container *ngFor="let button of actionButtons$ | async">
       <button mat-raised-button
               [color]="button.color || 'primary'"
               [disabled]="button.behavior === 'submit' && formGroup.invalid"
               [type]="button.behavior"
-              (click)= "buttonClicked(button.action)">
+              (click)= "button.action && buttonClicked(button.action)">
         {{button.label}}
       </button>
     </ng-container>
