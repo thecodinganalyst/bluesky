@@ -8,31 +8,38 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { NavigationComponent } from './navigation.component';
-import {StoreModule} from "@ngrx/store";
-import {featureReducer} from "../store/feature.reducer";
-import {routerReducer, StoreRouterConnectingModule} from "@ngrx/router-store";
 import {HarnessLoader} from "@angular/cdk/testing";
 import {TestbedHarnessEnvironment} from "@angular/cdk/testing/testbed";
 import {MatNavListHarness} from "@angular/material/list/testing";
-import {TableComponent} from "../table/table.component";
-import {RouterTestingModule} from "@angular/router/testing";
-import {Routes} from "@angular/router";
-import {MockComponent} from "ng-mocks";
+import {NavigationService} from "../store/navigation/navigation.service";
+import {MockStore, provideMockStore} from "@ngrx/store/testing";
+import {AppState} from "../store/app.state";
+import {navigationSelector} from "../store/navigation/navigation.selector";
+import {RouteData} from "../store/navigation/navigation.state";
+import {AppRoutingModule} from "../app-routing.module";
+import {appNameSelector} from "../store/feature.selector";
 
-const routes: Routes = [
-  { path: "table", component: MockComponent(TableComponent), title: "Table Route" }
-];
+const routeData: RouteData[] = [
+    { "title": "Dashboard", "path": "dashboard", "componentName": "dashboard" },
+    { "title": "Tree", "path": "tree", "componentName": "tree" },
+    { "title": "Form", "path": "form", "componentName": "form" },
+    { "title": "Table", "path": "table", "componentName": "table",
+      "data": { "showCheckbox": true, "allowMultipleSelection": true, "showEdit": true, "showDelete": true, "showAdd": true, "showSearch": true } },
+    { "title": "Data", "path": "data", "componentName": "table",
+      "data": { "showCheckbox": true, "allowMultipleSelection": true, "showEdit": true, "showDelete": true, "showAdd": true, "showSearch": true } }
+  ];
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
   let loader: HarnessLoader;
+  let store: MockStore<AppState>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NavigationComponent],
       imports: [
-        RouterTestingModule.withRoutes(routes),
+        AppRoutingModule,
         NoopAnimationsModule,
         LayoutModule,
         MatButtonModule,
@@ -40,15 +47,17 @@ describe('NavigationComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-        StoreModule.forRoot({feature: featureReducer, router: routerReducer}),
-        StoreRouterConnectingModule.forRoot()
       ],
+      providers: [NavigationService, provideMockStore()]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;
+    store = TestBed.inject(MockStore);
+    store.overrideSelector(navigationSelector.menu, routeData);
+    store.overrideSelector(appNameSelector, "Blue Sky")
     fixture.detectChanges();
     loader = TestbedHarnessEnvironment.loader(fixture);
   });
@@ -58,8 +67,8 @@ describe('NavigationComponent', () => {
   });
 
   it('should show route title in toolbar', async () => {
-    var navList = await loader.getHarness(MatNavListHarness);
-    var navListItems = await navList.getItems();
+    let navList = await loader.getHarness(MatNavListHarness);
+    let navListItems = await navList.getItems();
     expect(navListItems.length).toBe(5);
     expect(await navListItems[2].getText()).toBe("Form");
     await navListItems[2].click();
@@ -68,5 +77,6 @@ describe('NavigationComponent', () => {
     fixture.detectChanges();
     expect(component.title).toBe("Blue Sky");
   });
+
 });
 
