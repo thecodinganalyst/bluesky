@@ -35,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {formReducer} from "./store/form/form.reducer";
 import { EffectsModule } from '@ngrx/effects';
 import {AppEffects} from "./store/app.effects";
+import {navigationReducer} from "./store/navigation/navigation.reducer";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import {AppEffects} from "./store/app.effects";
     MatCheckboxModule,
     StoreModule.forRoot({
       feature: featureReducer,
+      navigation: navigationReducer,
       form: formReducer,
       router: routerReducer,
       table: tableReducer}
