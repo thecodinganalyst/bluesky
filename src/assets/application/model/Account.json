@@ -1,0 +1,8 @@
+{
+  "id": "string",
+  "name": "string",
+  "accountGroup": ["Asset", "Liability", "Expense", "Revenue", "Gain", "Loss"],
+  "currency": "string",
+  "openBal": "number",
+  "openDate": "Date"
+}

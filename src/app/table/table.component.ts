@@ -33,6 +33,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   title$: Observable<string | undefined> | undefined;
   tableDataColumns?: string[];
   displayedColumns?: string[];
+  contentFile?: string;
+  content?: string;
 
   activatedRouteData = this.activatedRoute.data.subscribe(data => {
     this.showCheckbox = data["showCheckbox"] === null ? false : data["showCheckbox"]
@@ -41,6 +43,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.showDelete = data["showDelete"] === null ? false : data["showDelete"]
     this.showAdd = data["showAdd"] === null ? false : data["showAdd"]
     this.showSearch = data["showSearch"] === null ? false : data["showSearch"]
+    this.contentFile = data["contentFile"]
   })
 
   constructor(private activatedRoute: ActivatedRoute, private store: Store) {

@@ -1,0 +1,7 @@
+[
+  { "id": "001", "name": "Bank", "accountGroup": "Asset", "currency": "SGD", "openBal": "100.00", "openDate": "2022-01-01" },
+  { "id": "002", "name": "Cash", "accountGroup": "Asset", "currency": "SGD", "openBal": "10.00", "openDate": "2022-01-01" },
+  { "id": "003", "name": "Credit Card", "accountGroup": "Liability", "currency": "SGD", "openBal": "0.00", "openDate": "2022-01-01" },
+  { "id": "004", "name": "Food", "accountGroup": "Expense", "currency": "SGD"},
+  { "id": "005", "name": "Salary", "accountGroup": "Revenue", "currency": "SGD"}
+]

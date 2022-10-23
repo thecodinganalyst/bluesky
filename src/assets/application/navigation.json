@@ -5,7 +5,7 @@
     { "title": "Form", "path": "form", "componentName": "form" },
     { "title": "Table", "path": "table", "componentName": "table",
       "data": { "showCheckbox": true, "allowMultipleSelection": true, "showEdit": true, "showDelete": true, "showAdd": true, "showSearch": true } },
-    { "title": "Data", "path": "data", "componentName": "table",
-      "data": { "showCheckbox": true, "allowMultipleSelection": true, "showEdit": true, "showDelete": true, "showAdd": true, "showSearch": true } }
+    { "title": "Accounts", "path": "account", "componentName": "table",
+      "data": { "showCheckbox": true, "allowMultipleSelection": true, "showEdit": true, "showDelete": true, "showAdd": true, "showSearch": true, "model": "Account", "endpoint": "assets/data/accounts" } }
   ]
 }
